@@ -1,4 +1,4 @@
-package binarySearch
+package _5_binarysearch
 
 // BinarySearch2 查找第一个值等于给定值得元素
 func BinarySearch2(nums []int, value int) int {
