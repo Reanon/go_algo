@@ -1,30 +1,34 @@
 package _1_array
 
 import (
+	"fmt"
 	"testing"
 )
 
 func TestInsert(t *testing.T) {
-	capacity := 10
-	arr := NewArray(uint(capacity))
+	capacity := 6
+	arr := NewArray(0, uint(capacity))
 	for i := 0; i < capacity-2; i++ {
-		err := arr.Insert(uint(i), i+1)
-		if nil != err {
-			t.Fatal(err.Error())
-		}
+		arr.Append(i)
+		fmt.Print("cap ", arr.Cap(), " len ", arr.Len(), " array: ")
+		arr.Print()
+	}
+
+	err := arr.Insert(uint(2), 999)
+	if err != nil {
+		t.Fatal(err.Error())
 	}
 	arr.Print()
-
-	arr.Insert(uint(6), 999)
-	arr.Print()
-
-	arr.InsertToTail(666)
+	err = arr.InsertToTail(666)
+	if err != nil {
+		t.Fatal(err.Error())
+	}
 	arr.Print()
 }
 
 func TestDelete(t *testing.T) {
 	capacity := 10
-	arr := NewArray(uint(capacity))
+	arr := NewArray(0, uint(capacity))
 	for i := 0; i < capacity; i++ {
 		err := arr.Insert(uint(i), i+1)
 		if nil != err {
@@ -42,9 +46,9 @@ func TestDelete(t *testing.T) {
 	}
 }
 
-func TestFind(t *testing.T) {
+func TestGet(t *testing.T) {
 	capacity := 10
-	arr := NewArray(uint(capacity))
+	arr := NewArray(0, uint(capacity))
 	for i := 0; i < capacity; i++ {
 		err := arr.Insert(uint(i), i+1)
 		if nil != err {
@@ -53,7 +57,7 @@ func TestFind(t *testing.T) {
 	}
 	arr.Print()
 
-	t.Log(arr.Find(0))
-	t.Log(arr.Find(9))
-	t.Log(arr.Find(11))
+	t.Log(arr.Get(0))
+	t.Log(arr.Get(9))
+	t.Log(arr.Get(11))
 }
